@@ -8,6 +8,6 @@ module.exports={
       return Photo.remove(photo).exec();
     },
     getPhotosByAuthor:function(author){
-      return Photo.find({}).exec();
+      return Photo.find({author:author._id}).sort({_id:1}).exec();
     }
 }
