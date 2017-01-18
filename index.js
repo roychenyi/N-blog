@@ -25,6 +25,8 @@ app.use(session({
   cookie: {
     maxAge: config.session.maxAge// 过期时间，过期后 cookie 中的 session id 自动删除
   },
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({// 将 session 存储到 mongodb
     url: config.mongodb// mongodb 地址
   })
@@ -90,6 +92,6 @@ if (module.parent) {
 } else {
   // 监听端口，启动程序
   app.listen(config.port, function () {
-    console.log(`${pkg.name} listening on port ${config.port}`);
+   console.log(`${pkg.name} listening on port ${config.port}`);
   });
 }

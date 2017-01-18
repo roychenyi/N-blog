@@ -1,0 +1,26 @@
+<%- include('header') %>
+<div class="ui grid">
+  <div class="four wide column"></div>
+  <div class="eight wide column">
+    <div class="ui segment">
+      <div class="ui minimal comments">
+        <a class="avatar"
+           href="/posts?author=<%= user._id %>"
+           data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>"
+           data-content="<%= user.bio %>">
+          <img class="avatar" src="/img/<%= user.avatar %>">
+        </a>
+<h1 class="ui dividing header"><%=user.name%>的相册</h1>
+
+<div class="ui segment">
+<% photos.forEach(function(photo){ %>
+
+  <a href="/img/<%=photo.path%>" class="ui image" ><img src="/img/<%=photo.path%>" alt="<%=photo.name%>" title="<%=photo.name%>"></a>
+
+<% })%>
+</div>
+  <form class="ui form segment" method="post" action="/album/upload" enctype="multipart/form-data">
+      <input type='file' name='file1'>
+      <input type="submit" class="ui button fluid" value="上传">
+  </form>
+<%- include('footer') %>
